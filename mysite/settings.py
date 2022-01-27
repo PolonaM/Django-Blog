@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-beyr%%w7dqiid(p9+va+1d_@&2---_ru@(0sv2o^m76z39r@gx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://polonam.pythonanywhere.com/',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
