@@ -1,0 +1,55 @@
+To start a Django project type command: 
+django-admin startproject mysite .
+
+This creates folder mysite which includes:
+ - __init__.py (executed immediately when the app starts)
+ - asgi.py (configuration file used when we deploy app on asgi server)
+ - wsgi.py (configuration file used when we deploy app on wsgi server)
+ - settings.py (contains all the settings)
+ - urls.py (urls of the project, how the urls are routed)
+
+Also creates manage.py, which we don't normally change. This is useful when we start a website: 
+python manage.py runserver. When running this command we get the warning that we need to run command python manage.py migrate - this creates default database tables in default database (db.sqlite3)  
+
+IMPORTANT!!
+If running commands from terminal in Virtual Studio Code (on Mac), the commands should always have python version from the selected environment, in my case:
+python3.9 manage.py runserver
+python3.9 manage.py migrate
+
+If running from independent terminal, when activating working environment, typing only 'python' is enough
+
+
+To create a new user that can login to the ../admin/ interface:
+Python manage.py createsuperuser
+
+
+To CREATE AN APP for the Django project:
+Python manage.py startapp 'name'
+This creates folder 'name' with many folders/files inside:
+ - folder migrations we don't change; here all database migrations (changes) will be registered - we execute python manage.py migrate command which reads the new changes in the code and implements them
+ - __init__.py (we don't modify it normally)
+ - admin.py (contains code that has to do with admin interface)
+ - apps.py (a configuration file for the app)
+ - models.py (a model contains classes of database fields from that page) 
+ - views.py (a view is a python function or a python class, the 'middle man' between the model and the html)
+ - tests.py (tests the app for the bugs)
+To the folder we need to add urls.py (to connect urls/slugs with the view)
+The folder of an app then needs to be added under INSTALLED_APPS in mystic/settings.py. 
+Also a folder named 'templates' needs to be created and the path to the folder needs to be added under TEMPLATES/DIRS in mystic/settings.py.
+
+If models.py gets updated (new database class is created), to apply the changes we need to run command 
+python3.9 manage.py makemigrations
+To implement the sql query (to update the database tables/add new database tables to our database) we then need to run
+python3.9 manage.py migrate
+In our case blog_post table was created
+
+Under admin.py we need to register the classes from the models.py. By doing this we get the functionality for adding posts (under ../admin/) to our site
+
+
+TEMPLATE FILTERS are a feature of Django which allows us to modify database tables values from the html template
+For example: {{post.author | title}} Here title is the filter. It changes the first letter of the author to capital one
+TEMPLATE INHERITANCE - in case of navigation menu, the code will stay only in one html file, and other will inherit from that file - {% extend 'base.html'%}
+
+Under translator.html there is a tag {% csrf_token %} which enables a security feature so the button Submit works
+
+For translation library pip install googletrans==4.0.0-rc1 was used, because the latest has some issues
