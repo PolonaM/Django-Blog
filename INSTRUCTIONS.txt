@@ -34,8 +34,8 @@ This creates folder 'name' with many folders/files inside:
  - views.py (a view is a python function or a python class, the 'middle man' between the model and the html)
  - tests.py (tests the app for the bugs)
 To the folder we need to add urls.py (to connect urls/slugs with the view)
-The folder of an app then needs to be added under INSTALLED_APPS in mystic/settings.py. 
-Also a folder named 'templates' needs to be created and the path to the folder needs to be added under TEMPLATES/DIRS in mystic/settings.py.
+The folder of an app then needs to be added under INSTALLED_APPS in mysite/settings.py. 
+Also a folder named 'templates' needs to be created and the path to the folder needs to be added under TEMPLATES/DIRS in mysite/settings.py.
 
 If models.py gets updated (new database class is created), to apply the changes we need to run command 
 python3.9 manage.py makemigrations
